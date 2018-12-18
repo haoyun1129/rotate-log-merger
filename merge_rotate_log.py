@@ -71,12 +71,11 @@ bytes_written = 0
 start_time = time.time()
 with open('merge.log', 'wb') as out_file:
     for log in log_files:
-        print('\r[%3d%%, %s, %d/%d] Appending %s...       ' % (bytes_written*100//total_size,
-                                                               human_readable_byte_count(bytes_written),
-                                                               merged_count,
-                                                               total_count,
-                                                               log),
-              end='', flush=True)
+        print('[%3d%%, %s, %d/%d] Appending %s...       ' % (bytes_written*100//total_size,
+                                                             human_readable_byte_count(bytes_written),
+                                                             merged_count,
+                                                             total_count,
+                                                             log))
         with open(log, 'rb') as infile:
             bytes_written_file = 0
             for chunk in read_in_chunks(infile):
@@ -84,7 +83,6 @@ with open('merge.log', 'wb') as out_file:
                 bytes_written += length
                 bytes_written_file += length
             merged_count += 1
-print()
 
 end_time = time.time()
 
